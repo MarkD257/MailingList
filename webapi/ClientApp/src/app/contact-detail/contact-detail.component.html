@@ -1,0 +1,22 @@
+<div *ngIf="contact">
+  <h2>{{ contact.LastName | uppercase }} Details</h2>
+  
+  <div>
+    <label>First Name:
+      <input type="text" [(ngModel)]="contact.FirstName" placeholder="firstname"/>
+    </label>
+  </div>
+  <div>
+    <label>Last Name:
+      <input type="text" [(ngModel)]="contact.LastName" placeholder="lastname"/>
+    </label>
+  </div>
+  <div>
+    <label>Email Address:
+      <input type="text" [(ngModel)]="contact.EmailAddress" placeholder="email"/>
+    </label>
+  </div>
+  <div><span>Id: </span>{{contact.Id}}</div>
+  <button id="back" type="button" class="btn btn-secondary" (click)="goBack()">go back</button>
+  <button id="save" type="button" class="btn btn-primary" (click)="save()">save</button>
+</div>

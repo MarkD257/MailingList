@@ -1,0 +1,21 @@
+<div id="search-component"  class="modal-header">
+ 
+ <!-- <input #searchBox  (NEW TYPE ) id="search-box" (keyup)="search(searchBox.value)" /> -->
+ <div class="row">
+  <!-- <span class="modal-title">Contact Search</span> -->
+  <mat-form-field style="text-align: left;">
+    <mat-label>Search for contact</mat-label>
+    <input id="search-box"  #searchBox matInput (keyup)="search(searchBox.value)" >
+  </mat-form-field>
+ </div>
+
+ <div class="row">
+  <ul class="search-result">
+      <li *ngFor="let contact of contacts$ | async" >
+        <a routerLink="/detail/{{contact.Id}}">
+          {{contact.LastName}},  {{contact.FirstName}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

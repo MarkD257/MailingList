@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+	<IsPackable>false</IsPackable>
+	<SpaRoot>ClientApp</SpaRoot>
+	<SpaProxyServerUrl>https://localhost:33781</SpaProxyServerUrl>
+	<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+	<Description>ASPNET Core 7.0 - Angular 16 Contact Mail List with WebAPI</Description>
+	<Copyright>Copyright © 2023 mwd-it.com</Copyright>
+
+	  <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<UserSecretsId>916a339a-39d5-42bd-a3e0-35db110fd2c7</UserSecretsId>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ServeStatiicFiles.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.10.1" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.10" />
+
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.10" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.0" />
+
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\WFLibrary\WFLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Infrastructure\Data\Migrations\" />
+  </ItemGroup>
+
+</Project>

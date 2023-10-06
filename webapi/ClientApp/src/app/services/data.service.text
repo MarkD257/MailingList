@@ -1,0 +1,105 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+
+import { Observable, throwError,  } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+import { environment } from '../../environments/environment.prod';
+import { IContact } from '../interfaces/interfaces';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DataService {
+    baseUrl = environment.apiUrl;
+    baseContactsUrl = this.baseUrl + 'contacts';
+  
+    constructor(private http: HttpClient) { }
+    
+    getContacts() : Observable<IContact[]> {
+        return this.http.get<IContact[]>(this.baseContactsUrl)
+            .pipe(
+                   map(contacts => {
+                       this.calculateContactsOrderTotal(contacts);
+                       return contacts;
+                   }),
+                   catchError(this.handleError)
+                );
+    }
+
+    getContactsPage(page: number, pageSize: number) : Observable<IPagedResults<IContact[]>> {
+        return this.http.get<IContact[]>(`${this.baseContactsUrl}/page/${page}/${pageSize}`, {observe: 'response'})
+            .pipe(            
+                map((res) => {
+                    //Need to observe response in order to get to this header (see {observe: 'response'} above)
+                    const totalRecords = +res.headers.get('x-inlinecount');
+                    let contacts = res.body as IContact[];
+                    this.calculateContactsOrderTotal(contacts);
+                    return {
+                        results: contacts,
+                        totalRecords: totalRecords
+                    };
+                }),
+                catchError(this.handleError)
+            );
+    }
+    
+    getContact(id: string) : Observable<IContact> {
+        return this.http.get<IContact>(this.baseContactsUrl + '/' + id)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    insertContact(contact: IContact) : Observable<IContact> {
+        return this.http.post<IContactResponse>(this.baseContactsUrl, contact)
+            .pipe(                   
+                map((data) => {
+                       console.log('insertContact status: ' + data.status);
+                       return data.contact;
+                   }),
+                catchError(this.handleError)
+            );
+    }
+   
+    updateContact(contact: IContact) : Observable<IContact> {
+        return this.http.put<IContactResponse>(this.baseContactsUrl + '/' + contact.id, contact) 
+            .pipe(
+                map((data) => {
+                       console.log('updateContact status: ' + data.status);
+                       return data.contact;
+                   }),
+                catchError(this.handleError)
+            );
+    }
+
+    deleteContact(id: string) : Observable<boolean> {
+        return this.http.delete<boolean>(this.baseContactsUrl + '/' + id)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    calculateContactsOrderTotal(contacts: IContact[]) {
+        for (let contact of contacts) {
+            if (contact && contact.orders) {
+                let total = 0;
+                for (let order of contact.orders) {
+                    total += (order.price * order.quantity);
+                }
+                contact.orderTotal = total;
+            }
+        }
+    }
+    
+    private handleError(error: HttpErrorResponse) {
+        console.error('server error:', error); 
+        if (error.error instanceof Error) {
+          let errMessage = error.error.message;
+          throwError(() => new Error(errMessage));
+        }
+        //return throwError(error || 'ASP.NET Core server error');
+        throwError(() => new Error('ASP.NET Core server error'))
+    }
+
+}

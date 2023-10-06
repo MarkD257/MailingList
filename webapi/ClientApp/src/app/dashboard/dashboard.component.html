@@ -1,0 +1,15 @@
+<h3>Top Contacts</h3>
+
+<div class="grid grid-pad">
+  <a *ngFor="let contact of contacts" class="col-1-4"
+      routerLink="/detail/{{contact.Id}}">
+    <div class="module contact">
+      <h4>{{contact.LastName}}</h4>
+      <p>Email: {{contact.EmailAddress }}
+    </div>
+  </a>
+</div>
+
+<div class="grid grid-pad">
+  <app-contact-search></app-contact-search>
+</div>

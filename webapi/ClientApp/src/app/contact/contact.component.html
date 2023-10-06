@@ -1,0 +1,4 @@
+<a routerLink="/detail/{{contact.Id}}">
+  <span class="badge">{{contact.Id}}</span> {{contact.LastName}}
+</a>
+<button  id="delete" type="button" class="btn btn-secondary" (click)="onDeleteClick($event)">x</button>
