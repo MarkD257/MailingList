@@ -9,8 +9,8 @@ using webapi.Domain.Interfaces;
 using webapi.Domain.Repositories;
 using webapi.Services.Interfaces;
 using webapi.Services;
-
-
+using Microsoft.AspNetCore.Diagnostics;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -172,6 +172,23 @@ static void ConfigureRequestPipeline(WebApplication app)
 
 	app.UseHttpsRedirection();
 	app.UseStaticFiles();
+	app.UseExceptionHandler(
+	options =>
+	{
+		options.Run(async context =>
+		{
+			// This returns user error message to UI - Angular needs to pick up message
+			context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+			context.Response.ContentType = "text/html";
+			var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+			if (null != exceptionObject)
+			{
+				var errorMessage = $"{exceptionObject.Error.Message}";
+				await context.Response.WriteAsync(errorMessage).ConfigureAwait(false);
+			}
+		});
+	}
+);
 	app.UseRouting();
 	app.UseCors(builder => builder
 		.AllowAnyOrigin()

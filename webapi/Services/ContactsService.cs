@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 using webapi.Domain.Entities;
@@ -27,9 +28,12 @@ public class ContactsService: IContactsService
             (bool success, string message, List<Contact> contacts) result = _contactRepository.GetAllContacts();
 
             if (!result.success)
-                return (false, "no contacts found", result.contacts);
-            else
-                return (true, "contacts found", result.contacts);
+				if (result.message.Contains("server"))
+                    return (false, "Use the Azure Management Portal or run sp_set_firewall_rule on the master database ", result.contacts);
+				else
+					return (false, "No contacts found", result.contacts);
+			else
+                return (true, "Contacts found", result.contacts);
         }
         catch (Exception)
         {

@@ -25,10 +25,18 @@ public class ContactsController: ControllerBase
 	{
 		(bool success, string message, List<Contact> contacts) result = _contactService.GetAllContacts();
 
-		if (!result.success)
-			return NotFound();
-		else
-			return Ok(result.contacts); ;
+        if (!result.success)
+        {
+            if (result.message.Contains("Portal"))
+                throw new Exception(result.message);
+                //return BadRequest();
+            //new HttpResponseException(Request.CreateErrorResponse(System.Net.HttpStatusCode.Conflict, "Custom Message"));
+
+            else
+                return NotFound(result.message);
+        }
+        else
+            return Ok(result.contacts);
 	}
 
 
@@ -63,20 +71,20 @@ public class ContactsController: ControllerBase
         }
     }
 
-    [HttpPost]
+    [HttpPut]
 	[Route("Update")]
-	public ActionResult<string> UpdateContact(ContactModel contactModel, Guid id)
+	public ActionResult<string> UpdateContact([FromBody]ContactModel contact)
     {
         try
         {
             ContactUpdModel contactUpdModel = new ContactUpdModel(
-               contactModel.FirstName,
-               contactModel.LastName,
-               // contactModel.BirthDate,
-               contactModel.EmailAddress
+			   contact.FirstName,
+			   contact.LastName,
+			   // contactModel.BirthDate,
+			   contact.EmailAddress
             );
 
-            (bool success, string message) result = _contactService.UpdateContact(contactUpdModel, id);
+            (bool success, string message) result = _contactService.UpdateContact(contactUpdModel, (Guid)contact.Id);
 
             if (result.success)
                 return "Contact Updated";

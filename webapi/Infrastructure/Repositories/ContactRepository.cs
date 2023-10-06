@@ -26,8 +26,8 @@ namespace webapi.Domain.Repositories
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw;
-            }
+				return (false, ex.Message, null);
+			}
         }
 
         public (bool, string, Contact) GetContact(Guid id)
