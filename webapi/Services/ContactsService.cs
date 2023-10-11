@@ -30,8 +30,10 @@ public class ContactsService: IContactsService
             if (!result.success)
 				if (result.message.Contains("server"))
                     return (false, "Use the Azure Management Portal or run sp_set_firewall_rule on the master database ", result.contacts);
+				else if (result.message.Contains("failed"))
+					return (false, result.message, result.contacts);
 				else
-					return (false, "No contacts found", result.contacts);
+				    return (false, "No contacts found", result.contacts);
 			else
                 return (true, "Contacts found", result.contacts);
         }
