@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8D756FD8-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapi.FunctionalTests", "test\ApiTraining.FunctionalTests\webapi.FunctionalTests.csproj", "{06710F15-7D64-41F2-B768-58733FCCED8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WFLibrary", "..\WFLibrary\WFLibrary.csproj", "{21C9F013-6BBF-4130-9F33-44B820C41754}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{06710F15-7D64-41F2-B768-58733FCCED8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06710F15-7D64-41F2-B768-58733FCCED8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06710F15-7D64-41F2-B768-58733FCCED8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21C9F013-6BBF-4130-9F33-44B820C41754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21C9F013-6BBF-4130-9F33-44B820C41754}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21C9F013-6BBF-4130-9F33-44B820C41754}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21C9F013-6BBF-4130-9F33-44B820C41754}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,11 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using webapi.Services.Interfaces;
 using webapi.Domain.Entities;
 using webapi.Models;
-using Microsoft.AspNetCore.Cors;
 
 namespace webapi.Controllers;
 
-// [09-11-23 MWD] Adddc api/ to route ----   Angular has api/  and Angular port is same as Swagger port
+// [09-11-23 MWD] Added api/ to route ----   Angular has api/  and Angular port is same as Swagger port
 [Route("api/[controller]")]
 public class ContactsController: ControllerBase
 {
