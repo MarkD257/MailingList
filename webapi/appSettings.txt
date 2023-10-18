@@ -1,4 +1,4 @@
-{
+﻿{
     "Logging": {
         "LogLevel": {
             "Default": "Information",
@@ -6,7 +6,7 @@
         }
     },
     "AllowedHosts": "*",
-    "KEY": "Server=tcp:grimley257.database.windows.net,1433;Encrypt=True;Database=dbDiegel;User ID=DiegelB;Password=Eagles$1002",
+    "KEY": "Server=tcp:grimley257.database.windows.net,1433;Encrypt=True;Database=dbDiegel;Authentication=Active Directory Default;",
     "ApplicationInsights": {
         "ConnectionString": "InstrumentationKey=7e02076a-58ae-411e-a9a4-86c04410ac9c;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/"
     },
@@ -14,7 +14,7 @@
     "UseDiegelAzure": true,
     "ConnectionStrings": {
         "DefaultConnection": "Server=OFFICEDELLPC;Database=Database;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=true",
-        "AzureDiegelConnection": "Server=tcp:grimley257.database.windows.net,1433;Encrypt=True;Database=dbDiegel;User ID=DiegelB;Password=Eagles$1002"
+        "AzureDiegelConnection": "Server=tcp:grimley257.database.windows.net,1433;Encrypt=True;Database=dbDiegel;Authentication=Active Directory Default;"
     },
     "https_port": "44341"
 }

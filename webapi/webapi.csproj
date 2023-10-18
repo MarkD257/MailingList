@@ -22,6 +22,7 @@
 	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 	<UserSecretsId>916a339a-39d5-42bd-a3e0-35db110fd2c7</UserSecretsId>
 	<ApplicationInsightsResourceId>/subscriptions/f6efadc3-716d-407f-9656-8e8292a279c8/resourceGroups/diegelb/providers/microsoft.insights/components/diegelweb</ApplicationInsightsResourceId>
+	<StartupObject>webapi.Program</StartupObject>
 
   </PropertyGroup>
 
@@ -33,6 +34,7 @@
     <PackageReference Include="Azure.Identity" Version="1.10.1" />
     <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.38" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
       <PrivateAssets>all</PrivateAssets>

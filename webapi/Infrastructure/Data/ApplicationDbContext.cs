@@ -14,7 +14,7 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-		var conn = (Microsoft.Data.SqlClient.SqlConnection)Database.GetDbConnection();
+		var conn = (Microsoft.Data.SqlClient.SqlConnection)Database.GetDbConnection(); // NO VALUE TEST
 		//var credential = new DefaultAzureCredential();
 		
 		/*

@@ -9,6 +9,7 @@ namespace webapi.Controllers;
 
 // [09-11-23 MWD] Added api/ to route ----   Angular has api/  and Angular port is same as Swagger port
 [Route("api/[controller]")]
+[ApiController]   // [10-16-23 MWD] Added
 public class ContactsController: ControllerBase
 {
     private readonly IContactsService _contactService;
